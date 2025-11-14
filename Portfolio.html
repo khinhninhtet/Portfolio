@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="favicon.ico" />
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(
+          125deg,
+          #ffe6e8,
+          #dad7d7,
+          white,
+          #f5d4d4,
+          #f9e2e0
+        );
+
+        color: #333;
+        scroll-behavior: smooth;
+      }
+
+      .navbar {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        transition: background 0.3s ease;
+      }
+
+      .navbar-brand {
+        font-weight: 700;
+        font-size: 1.8rem;
+      }
+
+      .navbar-brand span {
+        color: #d4a0a7;
+        font-size: 2.2rem;
+      }
+
+      .nav-link {
+        color: #333 !important;
+        font-weight: 500;
+        position: relative;
+        margin: 0 12px;
+        transition: color 0.3s ease;
+      }
+
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0%;
+        height: 2px;
+        background: linear-gradient(90deg, #d4a0a7, #eec1ba);
+        transition: width 0.3s ease;
+        border-radius: 2px;
+      }
+
+      .nav-link:hover {
+        color: #d4a0a7 !important;
+      }
+
+      .nav-link:hover::after {
+        width: 100%;
+        box-shadow: 0 0 8px rgba(212, 160, 167, 0.6);
+      }
+
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 120px 0 80px;
+
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        position: relative;
+        z-index: 1;
+        text-shadow: 0 2px 6px rgba(212, 160, 167, 0.3);
+      }
+      .hero p {
+        color: #555;
+        font-size: 1.2rem;
+        line-height: 1.6;
+        margin-top: 15px;
+        margin-bottom: 25px;
+        z-index: 1;
+        position: relative;
+      }
+
+      .hero .highlight {
+        color: #e09fa8;
+      }
+
+      .btn-rose {
+        background: linear-gradient(90deg, #d4a0a7, #eec1ba);
+        border: none;
+        color: white;
+        padding: 10px 28px;
+        border-radius: 25px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+
+      .btn-rose:hover {
+        background: linear-gradient(90deg, #eec1ba, #d4a0a7);
+        box-shadow: 0 10px 20px rgba(212, 160, 167, 0.4);
+        transform: translateY(-3px);
+      }
+
+      .image-layer-wrapper {
+        position: relative;
+        display: inline-block;
+      }
+
+      .image-layer {
+        border-radius: 0;
+        transition: transform 0.5s ease, box-shadow 0.5s ease;
+      }
+
+      .back-layer {
+        position: absolute;
+
+        width: 100%;
+        height: 100%;
+        background: #b8a899;
+        z-index: 1;
+        border-radius: 0;
+        box-shadow: 0 10px 30px rgba(212, 160, 167, 0.3);
+        top: 20px;
+        left: 20px;
+      }
+
+      .front-layer img {
+        display: block;
+
+        width: 100%;
+        max-width: 350px;
+        border-bottom: 1px solid #635957;
+        border-right: 1px solid #635957;
+        height: auto;
+
+        box-shadow: 0 15px 35px rgba(212, 160, 167, 0.5);
+        position: relative;
+        z-index: 2;
+        transition: transform 0.5s ease, box-shadow 0.5s ease;
+      }
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #d4a0a7;
+        margin-bottom: 20px;
+        position: relative;
+      }
+      hr {
+        border-top: 3px solid #d4a0a7;
+        width: 90%;
+        margin: 30px auto;
+      }
+
+      .section-title {
+        font-size: 3rem;
+        font-weight: 800;
+        color: #ec80a1;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-align: center;
+        position: relative;
+        margin-bottom: 40px;
+      }
+
+      .about-description {
+        margin-top: 5vh;
+        max-width: 70vw;
+        color: #555;
+        line-height: 1.7;
+        font-size: 1.15rem;
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+      }
+      .tech-title {
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+      }
+
+      .tech-card {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #d4a0a7, #eec1ba);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 6px 15px rgba(212, 160, 167, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .tech-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 25px rgba(212, 160, 167, 0.5);
+      }
+
+      .tech-card img {
+        width: 40px;
+        height: 40px;
+      }
+      .tooltip {
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-10px);
+        background: #d4a0a7;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 0.75rem;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+
+      .tech-card:hover .tooltip {
+        opacity: 1;
+        transform: translateX(-50%) translateY(-15px);
+      }
+
+      .project-card {
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        height: 100%;
+        margin-left: 3vw;
+        margin-top: 5vh;
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        cursor: pointer;
+      }
+
+      .project-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(212, 160, 167, 0.4);
+      }
+
+      .project-card img {
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        height: 40vh;
+      }
+
+      .project-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #ff4f81;
+        margin-bottom: 0.3rem;
+        text-transform: uppercase;
+        font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+          "Lucida Sans", Arial, sans-serif;
+      }
+
+      .project-description {
+        font-size: 1rem;
+        color: #555;
+        line-height: 1.5;
+        margin-bottom: 0.5rem;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .badge.bg-rose {
+        background: linear-gradient(135deg, #d4a0a7, #eec1ba);
+        color: white;
+        margin-right: 5px;
+        font-size: 0.75rem;
+        margin: 2vh 0;
+      }
+
+      .project-link {
+        font-weight: 500;
+        color: #f36479;
+        text-decoration: none;
+        transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
+      }
+
+      .project-link:hover {
+        text-decoration: underline;
+      }
+
+      .flip-card {
+        margin-top: 7vh;
+        background-color: transparent;
+        perspective: 1000px;
+        height: 40vh;
+        width: 50vw;
+        flex: 1 1 auto;
+      }
+
+      .flip-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.7s;
+        transform-style: preserve-3d;
+      }
+
+      .flip-card:hover .flip-card-inner {
+        transform: rotateY(180deg);
+      }
+
+      .flip-card-front,
+      .flip-card-back {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+        backface-visibility: hidden;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(212, 160, 167, 0.3);
+      }
+
+      .flip-card-front img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .front-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 10px 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.4);
+      }
+
+      .front-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #fff;
+        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+        margin-bottom: 0;
+      }
+
+      .badge.bg-rose {
+        background: linear-gradient(135deg, #d4a0a7, #eec1ba);
+        color: white;
+        font-size: 0.85rem;
+        padding: 5px 10px;
+      }
+
+      .flip-card-back {
+        background: linear-gradient(135deg, #fef6f6, #f9e2e0);
+        color: #333;
+        transform: rotateY(180deg);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .course-title {
+        text-decoration: underline;
+      }
+
+      .course-outline {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      .course-outline li {
+        position: relative;
+        padding-left: 15px;
+        margin-bottom: 8px;
+      }
+
+      .course-outline li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 6px;
+        width: 6px;
+        height: 6px;
+        background-color: #d4a0a7;
+        border-radius: 50%;
+      }
+
+      .review-card {
+        margin-top: 5vh;
+        background: white;
+        max-width: 70%;
+        border-radius: 15px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        position: relative;
+      }
+
+      .profile-img {
+        width: 7vw;
+        height: 15vh;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .review-text {
+        font-style: italic;
+        font-size: 0.95rem;
+
+        margin-bottom: 1vh;
+        color: #555;
+      }
+
+      .stars {
+        color: gold;
+        font-size: 1.2rem;
+        letter-spacing: 2px;
+      }
+
+      .date {
+        position: absolute;
+        bottom: 10px;
+        right: 15px;
+        font-size: 0.85rem;
+        color: #888;
+      }
+
+      #contact form {
+        height: 70vh;
+        margin-bottom: 5vh;
+      }
+
+      #contact .text-rose {
+        color: #d4a0a7 !important;
+      }
+
+      #contact .btn-rose {
+        background: linear-gradient(90deg, #d4a0a7, #eec1ba);
+        color: white;
+        font-weight: 500;
+        border-radius: 25px;
+      }
+
+      #contact .btn-rose:hover {
+        box-shadow: 0 8px 20px rgba(212, 160, 167, 0.4);
+        transform: translateY(-2px);
+      }
+
+      footer {
+        background: linear-gradient(135deg, #ca8375, #af756a);
+        color: #fff;
+        padding: 30px 0;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .footer-info span {
+        display: inline-block;
+        font-size: 1rem;
+        font-weight: 500;
+        transition: transform 0.3s, color 0.3s;
+        cursor: default;
+      }
+
+      .footer-info span:hover {
+        transform: translateY(-3px);
+        color: #ffd1d9;
+      }
+
+      footer p {
+        font-size: 0.9rem;
+        color: #fff;
+        margin-top: 10px;
+      }
+      @keyframes popUp {
+        0% {
+          opacity: 0;
+          transform: translateY(30px) scale(0.9);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .pop-up {
+        opacity: 0;
+        animation: popUp 0.8s forwards;
+      }
+
+      .pop-up.delay-1 {
+        animation-delay: 0.2s;
+      }
+      .pop-up.delay-2 {
+        animation-delay: 0.4s;
+      }
+      .pop-up.delay-3 {
+        animation-delay: 0.6s;
+      }
+
+      @media (max-width: 768px) {
+        .footer-info {
+          flex-direction: column;
+          gap: 8px;
+        }
+      }
+
+      @media (max-width: 992px) {
+        .hero {
+          text-align: center;
+          flex-direction: column;
+        }
+        .hero-img {
+          margin-top: 40px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top shadow-sm">
+      <div class="container">
+        <a class="navbar-brand" href="Portfolio.html"><span>P</span>ortfolio</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav ms-auto align-items-lg-center">
+            <li class="nav-item">
+              <a class="nav-link active" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About Me</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#projects">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#services">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact Me</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <h1 class="pop-up delay-1">
+              Hi, <span class="highlight">I’m Khin Hnin Htet</span>
+            </h1>
+            <p class="pop-up delay-2">
+              A web developer crafting elegant, functional, and user-friendly
+              experiences for the modern web.
+            </p>
+            <a href="#projects" class="btn btn-rose pop-up delay-3"
+              >View Projects</a
+            >
+          </div>
+
+          <div class="col-lg-6 text-center hero-img">
+            <div class="image-layer-wrapper pop-up delay-1">
+              <div class="image-layer back-layer"></div>
+              <div class="image-layer front-layer">
+                <img
+                  src="https://i.pinimg.com/736x/2c/d8/3e/2cd83e3084fc8b5563184356ecf28efe.jpg"
+                  alt="KHH"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <hr />
+    <section id="about" class="text-center py-5">
+      <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <p class="about-description mx-auto">
+          I am Khin Hnin Htet, a passionate web and software developer with
+          experience in building responsive and user-friendly applications. I
+          have a strong foundation in programming languages including C, C++,
+          HTML and CSS, . I am proficient in frameworks such as Bootstrap and
+          enjoy creating clean, modern designs for both web and software
+          projects. I continuously learn and explore emerging tools to enhance
+          my development capabilities. Collaboration and teamwork are central to
+          my approach, and I enjoy contributing to projects that challenge me to
+          grow. Outside of coding, I enjoy researching new trends in technology
+          and experimenting with creative design solutions. My goal is to
+          develop innovative solutions that make digital experiences more
+          intuitive and impactful.
+        </p>
+
+        <h5 class="tech-title mt-4">Technologies I Use</h5>
+        <div
+          class="tech-icons d-flex flex-wrap justify-content-center gap-4 mt-3"
+        >
+          <div class="tech-card">
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-plain.svg"
+              alt="HTML"
+            />
+            <span class="tooltip">HTML</span>
+          </div>
+          <div class="tech-card">
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-plain.svg"
+              alt="CSS"
+            />
+            <span class="tooltip">CSS</span>
+          </div>
+          <div class="tech-card">
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg"
+              alt="JavaScript"
+            />
+            <span class="tooltip">JavaScript</span>
+          </div>
+          <div class="tech-card">
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg"
+              alt="C"
+            />
+            <span class="tooltip">C</span>
+          </div>
+          <div class="tech-card">
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-plain.svg"
+              alt="C++"
+            />
+            <span class="tooltip">C++</span>
+          </div>
+          <div class="tech-card">
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-plain.svg"
+              alt="C#"
+            />
+            <span class="tooltip">C#</span>
+          </div>
+          <div class="tech-card">
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-plain.svg"
+              alt="Java"
+            />
+            <span class="tooltip">Java</span>
+          </div>
+          <div class="tech-card">
+            <img
+              src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-plain.svg"
+              alt="Bootstrap"
+            />
+            <span class="tooltip">Bootstrap</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <hr />
+    <section id="projects" class="py-5">
+      <div class="container">
+        <h2 class="section-title text-center mb-4">My Projects</h2>
+        <div class="row g-4">
+          <!-- Project Card 1 -->
+          <div class="col-md-6">
+            <div
+              class="project-card border rounded-3 shadow-sm overflow-hidden"
+            >
+              <img src="AstroZodiac.png" class="img-fluid" alt="Project 1" />
+              <div class="p-3">
+                <h5 class="project-title">AstroZodiac</h5>
+                <p class="project-description">
+                  AstroZodiac is a web application that lets users explore their
+                  zodiac signs and gain insights through interactive features.
+                  It can reveal personalized astrology details and even generate
+                  tarot card readings, offering a fun and mystical experience
+                  for astrology enthusiasts.Users can also receive guidance
+                  tailored to their unique astrological profile.
+                </p>
+                <div class="mb-2">
+                  <span class="badge bg-rose">HTML</span>
+                  <span class="badge bg-rose">CSS</span>
+                </div>
+                <a
+                  href="https://khinhninhtet.github.io/astrozodiac/Index.html"
+                  class="project-link"
+                  target="_blank"
+                  >View Project</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Project Card 2 -->
+          <div class="col-md-6">
+            <div
+              class="project-card border rounded-3 shadow-sm overflow-hidden"
+            >
+              <img src="SolarSystem.png" class="img-fluid" alt="Project 2" />
+              <div class="p-3">
+                <h5 class="project-title">The Solar System</h5>
+                <p class="project-description">
+                  The Solar System project is an interactive web application
+                  that simulates the orbits of seven planets around the sun,
+                  just like in real life. Users can visualize planetary motion
+                  and explore the dynamics of our solar system, making it both
+                  educational and visually engaging.It also allows users to
+                  learn about each planet’s characteristics.
+                </p>
+                <div class="mb-2">
+                  <span class="badge bg-rose">HTML</span>
+                  <span class="badge bg-rose">CSS</span>
+                </div>
+                <a
+                  href="https://khinhninhtet.github.io/Solar-System/SolarSystem.html"
+                  class="project-link"
+                  target="_blank"
+                  >View Project</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Project Card 3 -->
+          <div class="col-md-6">
+            <div
+              class="project-card border rounded-3 shadow-sm overflow-hidden"
+            >
+              <img src="CareerCompass.png" class="img-fluid" alt="Project 3" />
+              <div class="p-3">
+                <h5 class="project-title">Career Compass</h5>
+                <p class="project-description">
+                  Career Compass is a platform designed to help students
+                  discover their ideal career paths. Users can take personality
+                  tests to understand their strengths, explore popular careers,
+                  connect with mentors for guidance, and chat with peers to
+                  share experiences and insights.The platform empowers students
+                  to make informed decisions about their future.
+                </p>
+                <div class="mb-2">
+                  <span class="badge bg-rose">HTML</span>
+                  <span class="badge bg-rose">CSS</span>
+                </div>
+                <a
+                  href="https://khinhninhtet.github.io/CareerCompass/Home.html"
+                  class="project-link"
+                  target="_blank"
+                  >View Project</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Project Card 4 -->
+          <div class="col-md-6">
+            <div
+              class="project-card border rounded-3 shadow-sm overflow-hidden"
+            >
+              <img src="Drameon.png" class="img-fluid" alt="Project 4" />
+              <div class="p-3">
+                <h5 class="project-title">Drameon</h5>
+                <p class="project-description">
+                  Drameon is a movie streaming website where users can watch
+                  both ongoing and top-rated C-dramas, K-dramas, and Hollywood
+                  movies. The platform provides a variety of subtitle options,
+                  making content accessible to a global audience, and offers all
+                  of this completely free, allowing fans to enjoy their favorite
+                  shows and films anytime.
+                </p>
+                <div class="mb-2">
+                  <span class="badge bg-rose">HTML</span>
+                  <span class="badge bg-rose">CSS</span>
+                  <span class="badge bg-rose">Bootstrap</span>
+                </div>
+                <a
+                  href="https://khinhninhtet.github.io/Drameon/Drameon.html"
+                  class="project-link"
+                  target="_blank"
+                  >View Project</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <hr />
+
+    <section id="services" class="py-5">
+      <div class="container">
+        <h2 class="section-title text-center mb-4">My Services</h2>
+        <div class="row g-4 justify-content-center">
+          <!-- Card 1 -->
+          <div class="col-lg-4 col-md-6 d-flex">
+            <div class="flip-card w-100">
+              <div class="flip-card-inner">
+                <!-- Front -->
+                <div class="flip-card-front position-relative">
+                  <img
+                    src="https://i.pinimg.com/736x/32/f4/d6/32f4d6f4e6da23d03fb10c8ee1658fa2.jpg"
+                    class="img-fluid w-100 h-100"
+                    alt="Web Development"
+                  />
+                  <div
+                    class="front-overlay d-flex justify-content-between align-items-center p-3"
+                  >
+                    <h5 class="front-title mb-0">Web Development</h5>
+                    <span class="badge bg-rose fw-bold">$150</span>
+                  </div>
+                </div>
+
+                <!-- Back -->
+                <div
+                  class="flip-card-back d-flex flex-column justify-content-center text-center p-4"
+                >
+                  <h5 class="text-rose fw-bold mb-3 course-title">
+                    Course Outline
+                  </h5>
+                  <ul class="course-outline mb-0">
+                    <li>HTML & CSS fundamentals</li>
+                    <li>JavaScript basics & DOM</li>
+                    <li>Bootstrap & responsive design</li>
+                  </ul>
+                  <p class="mt-3 text-muted fst-italic">
+                    Build responsive, modern websites using HTML, CSS, and
+                    JavaScript.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="col-lg-4 col-md-6 d-flex">
+            <div class="flip-card w-100">
+              <div class="flip-card-inner">
+                <!-- Front -->
+                <div class="flip-card-front position-relative">
+                  <img
+                    src="https://i.pinimg.com/1200x/b1/7b/be/b17bbe16d4ec9e8f9e28ee7c77c757d2.jpg"
+                    class="img-fluid w-100 h-100"
+                    alt="UI/UX"
+                  />
+                  <div
+                    class="front-overlay d-flex justify-content-between align-items-center p-3"
+                  >
+                    <h5 class="front-title mb-0">UI/UX Design</h5>
+                    <span class="badge bg-rose fw-bold">$120</span>
+                  </div>
+                </div>
+
+                <!-- Back -->
+                <div
+                  class="flip-card-back d-flex flex-column justify-content-center text-center p-4"
+                >
+                  <h5 class="text-rose fw-bold mb-3 course-title">
+                    Course Outline
+                  </h5>
+                  <ul class="course-outline mb-0">
+                    <li>Wireframing & prototyping</li>
+                    <li>Color theory & typography</li>
+                    <li>User experience optimization</li>
+                  </ul>
+                  <p class="mt-3 text-muted fst-italic">
+                    Create clean and user-friendly designs for web and software
+                    projects.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="col-lg-4 col-md-6 d-flex">
+            <div class="flip-card w-100">
+              <div class="flip-card-inner">
+                <!-- Front -->
+                <div class="flip-card-front position-relative">
+                  <img
+                    src="https://i.pinimg.com/736x/27/5d/2f/275d2f2edeab40d1b332c78c4b818819.jpg"
+                    class="img-fluid w-100 h-100"
+                    alt="UI/UX Design"
+                  />
+                  <div
+                    class="front-overlay d-flex justify-content-between align-items-center p-3"
+                  >
+                    <h5 class="front-title mb-0">Responsive Web Design</h5>
+                    <span class="badge bg-rose fw-bold">$160</span>
+                  </div>
+                </div>
+
+                <!-- Back -->
+                <div
+                  class="flip-card-back d-flex flex-column justify-content-center text-center p-4"
+                >
+                  <h5 class="text-rose fw-bold mb-3 course-title">
+                    Course Outline
+                  </h5>
+                  <ul class="course-outline mb-0">
+                    <li>Mobile-first design principles</li>
+                    <li>Bootstrap & Flexbox/Grid layouts</li>
+                    <li>Media queries & breakpoints</li>
+                  </ul>
+                  <p class="mt-3 text-muted fst-italic">
+                    Learn how to build websites that look and function perfectly
+                    on any device.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container my-5" id="feedback">
+      <h2 class="section-title mb-4 text-center">Customer Reviews</h2>
+
+      <div id="feedbackCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <!-- Review 1 -->
+          <div class="carousel-item active">
+            <div class="review-card p-4 mx-auto">
+              <div class="d-flex align-items-start">
+                <img
+                  src="https://i.pinimg.com/736x/cb/a8/6a/cba86a64d80c238f5cf9e526e8502791.jpg"
+                  class="profile-img me-4"
+                />
+
+                <div class="flex-grow-1">
+                  <div class="date text-end">03 Sep 2024</div>
+
+                  <p class="review-text">
+                    “Loved her teaching style — simple, precise, and aesthetic.
+                    She's a great instructor for beginners.”
+                  </p>
+
+                  <div class="stars mb-1">★★★★★</div>
+
+                  <h6 class="mb-0 fw-bold">Floria</h6>
+                  <small class="text-muted">Student</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Review 2 -->
+          <div class="carousel-item">
+            <div class="review-card p-4 mx-auto">
+              <div class="d-flex align-items-start">
+                <img
+                  src="https://i.pinimg.com/736x/8b/75/11/8b751104028114e2f6a1e91e52cf8645.jpg"
+                  class="profile-img me-4"
+                />
+
+                <div class="flex-grow-1">
+                  <div class="date text-end">21 Oct 2024</div>
+
+                  <p class="review-text">
+                    "Beautiful designs, clean code, and great attitude. She
+                    always delivers more than expected. Definitely recommend her
+                    for any creative project."
+                  </p>
+
+                  <div class="stars mb-1">★★★★☆</div>
+
+                  <h6 class="mb-0 fw-bold">Delory</h6>
+                  <small class="text-muted">Client</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Review 3 -->
+          <div class="carousel-item">
+            <div class="review-card p-4 mx-auto">
+              <div class="d-flex align-items-start">
+                <img
+                  src="https://i.pinimg.com/736x/f3/bd/fc/f3bdfcb04ee37d61bca83bd27c863b3e.jpg"
+                  class="profile-img me-4"
+                />
+
+                <div class="flex-grow-1">
+                  <div class="date text-end">01 Jan 2025</div>
+
+                  <p class="review-text">
+                    She combines creativity and technical skill perfectly. The
+                    results always look polished and professional. A true
+                    aesthetic-focused creator.
+                  </p>
+
+                  <div class="stars mb-1">★★★★☆</div>
+
+                  <h6 class="mb-0 fw-bold">Sarah</h6>
+                  <small class="text-muted">Friend</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Review 4 -->
+          <div class="carousel-item">
+            <div class="review-card p-4 mx-auto">
+              <div class="d-flex align-items-start">
+                <!-- Profile Image -->
+                <img
+                  src="https://i.pinimg.com/736x/ad/f3/88/adf388f9986975f7d710e6358d82a495.jpg"
+                  class="profile-img me-4"
+                />
+
+                <!-- Review Content -->
+                <div class="flex-grow-1">
+                  <div class="date text-end">12 April 2025</div>
+
+                  <p class="review-text">
+                    “She explains things in a way that’s easy to grasp. Really
+                    helped me level up my skills.”
+                  </p>
+
+                  <div class="stars mb-1">★★★★★</div>
+
+                  <h6 class="mb-0 fw-bold">Jason</h6>
+                  <small class="text-muted">Student</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Review 5-->
+          <div class="carousel-item">
+            <div class="review-card p-4 mx-auto">
+              <div class="d-flex align-items-start">
+                <img
+                  src="https://i.pinimg.com/736x/13/09/1c/13091c85acf90fac360ee33415b0e7a9.jpg"
+                  class="profile-img me-4"
+                />
+
+                <div class="flex-grow-1">
+                  <div class="date text-end">24 Aug 2025</div>
+
+                  <p class="review-text">
+                    "Great creativity! You pay attention to small details. Keep
+                    going!"
+                  </p>
+
+                  <div class="stars mb-1">★★★★★</div>
+
+                  <h6 class="mb-0 fw-bold">Emily</h6>
+                  <small class="text-muted">Teacher</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#feedbackCarousel"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#feedbackCarousel"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon"></span>
+        </button>
+      </div>
+    </section>
+
+    <hr />
+
+    <section id="contact" class="py-5">
+      <div class="container">
+        <h2 class="section-title text-center mb-4">Contact Me</h2>
+        <div class="row justify-content-center">
+          <!-- Contact Form -->
+          <div class="col-lg-6 mt-4">
+            <form class="p-4 bg-white rounded-4 shadow-sm">
+              <div class="mb-3">
+                <label for="name" class="form-label fw-bold">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  placeholder="Your Name"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label fw-bold">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  placeholder="Your Email"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="message" class="form-label fw-bold">Message</label>
+                <textarea
+                  class="form-control"
+                  id="message"
+                  rows="5"
+                  placeholder="Write your message..."
+                ></textarea>
+              </div>
+              <button type="submit" class="btn btn-rose w-100">
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-container text-center">
+        <div
+          class="footer-info d-flex flex-column flex-md-row justify-content-center gap-4 mb-3"
+        >
+          <span>📞 +95 9 792 263 241</span>
+          <span>📍 Mandalay, Myanmar</span>
+          <span>✉️ khinhninhtet16@gmail.com</span>
+        </div>
+        <p class="mb-0">&copy; 2025 Khin Hnin Htet. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
